@@ -1,0 +1,55 @@
+  String invoiceid = "123123";
+//        String amount = "50.00";
+//        String currency = "usd";
+//        String billing_fname = "muhit";
+//        String billing_lname = "muhit";
+//        String billing_email = "bc@gmail.com";
+//        String redirect_to = "https://anycodeunlock.com/recharge/";
+//        String notify_url = "https://test.payerurl.com/api/payment";
+//        String type = "purl";
+//
+//        /**********Do not share the credencials*********/
+//        // get your API key : https://dashboard.payerurl.com/profile/api-management
+//        String payerurl_secret_key = "a7a16cbd7252290fc95c16ba48156a95";
+//        String payerurl_public_key = "e07c8f534f11ce794c3062ebb4fc7101";
+//        /***********************************************/
+//
+//        String signature;
+//        QueryString args = new QueryString("amount", amount);
+//        args.add("billing_email", billing_email);
+//        args.add("billing_fname", billing_fname);
+//        args.add("billing_lname", billing_lname);
+//        args.add("currency", currency);
+//        args.add("notify_url", notify_url);
+//        args.add("order_id", invoiceid);
+//        args.add("redirect_to", redirect_to);
+//        args.add("type", type);
+//
+//        try {
+//            final Mac sha256_HMAC = Mac.getInstance("HmacSHA256");
+//            final SecretKeySpec secret_key = new javax.crypto.spec.SecretKeySpec(payerurl_secret_key.getBytes(StandardCharsets.UTF_8), "HmacSHA256");
+//            sha256_HMAC.init(secret_key);
+//            signature = Hex.encodeHexString(sha256_HMAC.doFinal(args.toString().getBytes(StandardCharsets.UTF_8)));
+//        } catch (InvalidKeyException e) {
+//            throw new RuntimeException("Failed to calculate hmac-sha256", e);
+//        } catch (NoSuchAlgorithmException e) {
+//            throw new RuntimeException(e);
+//        }
+//
+//        String authStr = Base64.getEncoder()
+//                .encodeToString((payerurl_public_key + ":" + signature)
+//                        .getBytes());
+//
+//        HttpResponse<String> response = Unirest.post("https://dashboard.payerurl.com/api/payment")
+//                .header("Authorization", "Bearer " + authStr)
+//                .multiPartContent()
+//                .field("order_id", invoiceid)
+//                .field("amount", amount)
+//                .field("billing_fname", billing_fname)
+//                .field("billing_lname", billing_lname)
+//                .field("billing_email", billing_email)
+//                .field("redirect_to", redirect_to)
+//                .field("notify_url", notify_url)
+//                .field("currency", currency)
+//                .field("type", type)
+//                .asString();
